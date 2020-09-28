@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const burgerShcema = new Schema({
+const orderSchema = new Schema({
   ingredients: {
     meat: {
       type: Number,
@@ -42,4 +42,4 @@ const burgerShcema = new Schema({
   },
 });
 
-module.exports = mongoose.model('Burger', burgerShcema);
+module.exports = mongoose.model('Order', orderSchema);

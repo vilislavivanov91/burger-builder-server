@@ -1,14 +1,14 @@
-const Burger = require('../model/Burger');
+const Order = require('../model/Order');
 
-const createBurger = (req, res, next) => {
+const createOrder = (req, res, next) => {
   console.log(req.body);
-  const { errors, isValid } = require('../validation/createBurger')(req.body);
+  const { errors, isValid } = require('../validation/createOrder')(req.body);
 
   if (!isValid) {
     return res.status(404).json(errors);
   }
 
-  const burger = new Burger({
+  const order = new Order({
     ingredients: {
       meat: +req.body.meat,
       bacon: +req.body.bacon,
@@ -22,12 +22,12 @@ const createBurger = (req, res, next) => {
     postalCode: req.body.postalCode,
   });
 
-  burger
+  order
     .save()
-    .then((burger) => {
-      return res.json(burger);
+    .then((order) => {
+      return res.json(order);
     })
     .catch((err) => console.log(err));
 };
 
-module.exports = createBurger;
+module.exports = createOrder;
