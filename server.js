@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const cors = require('cors');
 
 const { monogURL, port } = require('./config/keys');
 const homeRouter = require('./routes/home');
@@ -8,6 +9,7 @@ const orderRouter = require('./routes/order');
 
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(cors()); // enabling CORS policy
 
 app.use('/', homeRouter);
 app.use('/order', orderRouter);

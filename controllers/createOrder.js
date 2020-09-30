@@ -1,11 +1,10 @@
 const Order = require('../model/Order');
 
 const createOrder = (req, res, next) => {
-  console.log(req.body);
   const { errors, isValid } = require('../validation/createOrder')(req.body);
 
   if (!isValid) {
-    return res.status(404).json(errors);
+    return res.status(400).json(errors);
   }
 
   const order = new Order({

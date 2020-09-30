@@ -1,4 +1,3 @@
-const validator = require('validator');
 const isEmpty = require('./isEmpty');
 
 module.exports = (data) => {
@@ -19,9 +18,9 @@ module.exports = (data) => {
   if (isEmpty(data.price)) {
     errors.price = 'Price field is required';
   }
-  if (data.price && !validator.isDecimal(data.price)) {
-    errors.price = 'Price field must be a decimal number';
-  }
+  // if (data.price && !validator.isDecimal(data.price)) {
+  //   errors.price = 'Price field must be a decimal number';
+  // }
   if (isEmpty(data.name)) {
     errors.name = 'Name field is required';
   }
