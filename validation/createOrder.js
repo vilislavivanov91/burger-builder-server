@@ -1,18 +1,17 @@
 const isEmpty = require('./isEmpty');
 
 module.exports = (data) => {
-  console.log(isEmpty(data.price));
   const errors = {};
-  if (isEmpty(data.meat)) {
+  if (isEmpty(data.ingredients.meat)) {
     errors.meat = 'Meat ingredient is required';
   }
-  if (isEmpty(data.bacon)) {
+  if (isEmpty(data.ingredients.bacon)) {
     errors.bacon = 'Bacon ingredient is required';
   }
-  if (isEmpty(data.salad)) {
+  if (isEmpty(data.ingredients.salad)) {
     errors.salad = 'Salad ingredient is required';
   }
-  if (isEmpty(data.cheese)) {
+  if (isEmpty(data.ingredients.cheese)) {
     errors.cheese = 'Cheese ingredient is required';
   }
   if (isEmpty(data.price)) {

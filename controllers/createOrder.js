@@ -9,10 +9,10 @@ const createOrder = (req, res, next) => {
 
   const order = new Order({
     ingredients: {
-      meat: +req.body.meat,
-      bacon: +req.body.bacon,
-      salad: +req.body.salad,
-      cheese: +req.body.cheese,
+      meat: +req.body.ingredients.meat,
+      bacon: +req.body.ingredients.bacon,
+      salad: +req.body.ingredients.salad,
+      cheese: +req.body.ingredients.cheese,
     },
     price: +req.body.price,
     name: req.body.name,
