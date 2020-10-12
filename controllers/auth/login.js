@@ -28,7 +28,7 @@ module.exports = (req, res, next) => {
         // password match
         // generate token
         jwt.sign(
-          { _id: user._id, email: user.emit },
+          { _id: user._id, email: user.email },
           secretOrKey,
           { expiresIn: 3600 },
           (err, token) => {

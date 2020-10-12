@@ -1,7 +1,7 @@
 const Order = require('../model/Order');
 
 const getAllOrders = (req, res, next) => {
-  Order.find({})
+  Order.find({ email: req.user.email })
     .then((orders) => {
       if (orders.length === 0) {
         return res.status(404).json({ orders: 'Orders not found' });
