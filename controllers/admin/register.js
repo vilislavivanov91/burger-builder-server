@@ -5,10 +5,12 @@ const User = require('../../model/User');
 const { secretOrKey } = require('../../config/keys');
 
 module.exports = (req, res, next) => {
-  User.findOne({ email: req.body.email })
+  // Only one admin user can be created
+  User.findOne({ isAdmin: true })
     .then((user) => {
+      console.log(user);
       if (user) {
-        return res.status(400).json({ email: 'Already exists' });
+        return res.status(400).json({ admin: 'Admin already exists' });
       }
       const { errors, isValid } = require('../../validation/registerUser')(
         req.body
@@ -18,20 +20,20 @@ module.exports = (req, res, next) => {
         return res.status(400).json(errors);
       }
 
-      const newUser = new User({
+      const admin = new User({
         email: req.body.email,
         password: req.body.password,
-        isAdmin: false,
+        isAdmin: true,
       });
       bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, encrypted) => {
+        bcrypt.hash(admin.password, salt, (err, encrypted) => {
           if (err) return console.log(err);
-          newUser.password = encrypted;
-          newUser
+          admin.password = encrypted;
+          admin
             .save()
-            .then((user) => {
+            .then((admin) => {
               jwt.sign(
-                { _id: user._id, email: user.email },
+                { _id: admin._id, email: admin.email },
                 secretOrKey,
                 { expiresIn: 3600 },
                 (err, token) => {

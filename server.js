@@ -7,7 +7,8 @@ const passport = require('passport');
 const { monogURL, port } = require('./config/keys');
 const homeRouter = require('./routes/home');
 const orderRouter = require('./routes/order');
-const authRouter = require('./routes/auth');
+const userAuthRouter = require('./routes/auth/user');
+const adminAuthRouter = require('./routes/auth/admin');
 
 mongoose.connect(monogURL, (err) => {
   if (err) {
@@ -24,7 +25,8 @@ mongoose.connect(monogURL, (err) => {
     // connect routes
     app.use('/', homeRouter);
     app.use('/order', orderRouter);
-    app.use('/auth', authRouter);
+    app.use('/auth/user', userAuthRouter);
+    app.use('/auth/admin', adminAuthRouter);
 
     app.listen(port, () => {
       console.log('App up and running at port: ' + port);
