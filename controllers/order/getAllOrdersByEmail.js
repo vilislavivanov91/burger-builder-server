@@ -1,4 +1,4 @@
-const Order = require('../model/Order');
+const Order = require('../../model/Order');
 
 const getAllOrders = (req, res, next) => {
   Order.find({ email: req.user.email })

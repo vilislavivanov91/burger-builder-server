@@ -1,7 +1,7 @@
-const Order = require('../model/Order');
+const Order = require('../../model/Order');
 
 const createOrder = (req, res, next) => {
-  const { errors, isValid } = require('../validation/createOrder')(req.body);
+  const { errors, isValid } = require('../../validation/createOrder')(req.body);
 
   if (!isValid) {
     return res.status(400).json(errors);

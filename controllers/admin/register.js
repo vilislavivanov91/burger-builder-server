@@ -33,7 +33,7 @@ module.exports = (req, res, next) => {
             .save()
             .then((admin) => {
               jwt.sign(
-                { _id: admin._id, email: admin.email },
+                { _id: admin._id, email: admin.email, isAdmin: true },
                 secretOrKey,
                 { expiresIn: 3600 },
                 (err, token) => {

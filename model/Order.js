@@ -40,6 +40,11 @@ const orderSchema = new Schema({
     type: String,
     required: true,
   },
+  stage: {
+    type: String,
+    enum: ['ordered', 'accepted', 'sent', 'delivered'],
+    default: 'ordered',
+  },
 });
 
 module.exports = mongoose.model('Order', orderSchema);
